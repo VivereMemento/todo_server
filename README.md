@@ -12,7 +12,7 @@ folder /simple_api/ - run npm install
 ## Running
 
 ```sh
-npm start
+inside root folder run - npm start
 ```
 
 ## Building for deploy
