@@ -6,7 +6,7 @@ Fork this repository in order to solve task.
 
 ```sh
 npm install
-folder /simple_api/ - run npm install
+folder /simple_api/ - npm install
 ```
 
 ## Running
