@@ -1,4 +1,22 @@
-to run this app you need:
-	clone this repo,
-	npm install,
-	npm run dev,
+# Template
+
+Fork this repository in order to solve task.
+
+## Installation
+
+```sh
+npm install
+folder /simple_api/ - run npm install
+```
+
+## Running
+
+```sh
+npm start
+```
+
+## Building for deploy
+
+```sh
+npm run build
+```
