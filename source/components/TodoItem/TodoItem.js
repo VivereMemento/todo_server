@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './todo-item.scss';
-
-import { editTodo } from '../../store/AC';
-import deleteTodo from '../../store/middlewars/deleteTodo';
 
 class TodoItem extends Component {
 	render() {
@@ -28,15 +24,15 @@ class TodoItem extends Component {
 	};
 
 	handleEditClick = () => {
-		const { editTodo, id, desc, priority, project, title } = this.props;
-		editTodo({id, desc, priority, project, title });
+		const { id, desc, priority, project, title, onEditTodo } = this.props;
+		onEditTodo({id, desc, priority, project, title });
 	};
 	
 	handleDeleteClick = () => {
-		const { id, deleteTodo } = this.props;
-		deleteTodo('/api/todo/', id);
+		const { id, onDeleteTodo } = this.props;
+		onDeleteTodo(id);
 	}
 };
 
  
-export default connect(null, { editTodo, deleteTodo })(TodoItem);
+export default TodoItem;

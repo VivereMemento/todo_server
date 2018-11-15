@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './todo-list.scss';
 import getItems from '../../store/middlewars/getItems';
-import { reorderTodo } from '../../store/AC';
+import deleteTodo from '../../store/middlewars/deleteTodo';
+import { reorderTodo, editTodo } from '../../store/AC';
 import TodoItem from '../TodoItem';
 
 // a little function to help us with reordering the result
@@ -49,7 +50,11 @@ class TodoList extends Component {
 						{...provided.draggableProps}
 						{...provided.dragHandleProps}
 					>
-						<TodoItem { ...item }/>
+						<TodoItem 
+							onDeleteTodo={ this.onDeleteTodo }
+							onEditTodo={ this.onEditTodo }
+							{ ...item }
+						/>
 					</div>
 				)}
 			</Draggable>
@@ -70,12 +75,22 @@ class TodoList extends Component {
 		
 		
     this.props.reorderTodo(items);
-  }
+	};
+	
+	onEditTodo = ({id, desc, priority, project, title }) => {
+		const { editTodo } = this.props;
+		editTodo({id, desc, priority, project, title });
+	};
+	
+	onDeleteTodo = id => {
+		const { deleteTodo } = this.props;
+		deleteTodo('/api/todo/', id);
+	}
 }
  
 export default connect(
 	state => ({
 		initialState: state.initialState
 	}),
-	{ getItems, reorderTodo }
+	{ getItems, reorderTodo, deleteTodo, editTodo }
 )(TodoList);
